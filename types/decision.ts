@@ -1,7 +1,6 @@
 export interface Option {
   id: string;
   name: string;
-  description?: string;
 }
 
 export interface Criterion {
@@ -14,7 +13,7 @@ export interface Criterion {
 export interface Score {
   optionId: string;
   criterionId: string;
-  value: number; // typically 1-10
+  value: number; // 1-10
 }
 
 export interface RankedOption extends Option {
@@ -29,10 +28,4 @@ export interface DecisionState {
   options: Option[];
   criteria: Criterion[];
   scores: Score[];
-}
-
-export interface Scenario {
-  id: string;
-  name: string;
-  state: DecisionState;
 }

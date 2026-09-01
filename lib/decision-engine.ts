@@ -12,8 +12,7 @@ export function calculateRankings(state: DecisionState): RankedOption[] {
       );
       const rawValue = scoreEntry ? scoreEntry.value : 0;
       
-      // If it's a constraint and score is 0 or missing, it fails
-      if (crit.isConstraint && rawValue === 0) {
+      if (crit.isConstraint && rawValue < 5) { // Example constraint threshold
         passesConstraints = false;
       }
 
@@ -24,7 +23,7 @@ export function calculateRankings(state: DecisionState): RankedOption[] {
 
     return {
       ...option,
-      totalScore: passesConstraints ? totalScore : 0,
+      totalScore: passesConstraints ? Number(totalScore.toFixed(2)) : 0,
       breakdown,
       passesConstraints
     };

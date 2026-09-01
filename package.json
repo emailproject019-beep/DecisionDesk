@@ -1,17 +1,24 @@
 {
   "name": "decisiondesk",
   "version": "1.0.0",
-  "description": "WebMCP-powered decision analysis workspace",
-  "type": "module",
+  "private": true,
   "scripts": {
-    "build": "tsc",
-    "start": "node build/server.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.7",
+    "lucide-react": "^0.300.0",
     "@modelcontextprotocol/sdk": "^1.0.1"
   },
   "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.0",
     "typescript": "^5.3.3",
-    "@types/node": "^20.10.0"
+    "tailwindcss": "^3.4.0"
   }
 }

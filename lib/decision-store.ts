@@ -1,32 +1,29 @@
 import { create } from 'zustand';
-import { DecisionState, Option, Criterion, Score } from '../types/decision';
-import { seedState } from './seed-data';
+import { DecisionState } from '../types/decision';
+import { seedDecision } from './seed-data';
 
 interface DecisionStore extends DecisionState {
-  setDecision: (state: DecisionState) => void;
   updateWeight: (criterionId: string, newWeight: number) => void;
-  scoreOption: (optionId: string, criterionId: string, value: number) => void;
+  setConstraint: (criterionId: string, isConstraint: boolean) => void;
   addActivity: (message: string) => void;
   agentActivities: string[];
 }
 
 export const useDecisionStore = create<DecisionStore>((set) => ({
-  ...seedState,
-  agentActivities: [],
-  setDecision: (state) => set(() => ({ ...state })),
+  ...seedDecision,
+  agentActivities: ["System initialized. Seed data loaded."],
   updateWeight: (criterionId, newWeight) => 
     set((state) => ({
       criteria: state.criteria.map(c => 
         c.id === criterionId ? { ...c, weight: newWeight } : c
       )
     })),
-  scoreOption: (optionId, criterionId, value) =>
-    set((state) => {
-      const filteredScores = state.scores.filter(
-        s => !(s.optionId === optionId && s.criterionId === criterionId)
-      );
-      return { scores: [...filteredScores, { optionId, criterionId, value }] };
-    }),
+  setConstraint: (criterionId, isConstraint) =>
+    set((state) => ({
+      criteria: state.criteria.map(c => 
+        c.id === criterionId ? { ...c, isConstraint } : c
+      )
+    })),
   addActivity: (message) => 
     set((state) => ({ agentActivities: [message, ...state.agentActivities] }))
 }));

@@ -2,10 +2,12 @@ import OptionsTable from '@/components/OptionsTable';
 import CriteriaPanel from '@/components/CriteriaPanel';
 import RankingPanel from '@/components/RankingPanel';
 import AgentActivity from '@/components/AgentActivity';
+import WebMCPRegistrar from "@/components/WebMCPRegistrar";
 
 export default function DecisionWorkspace({ params }: { params: { id: string } }) {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
+      <WebMCPRegistrar />
       <header className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center gap-4">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">D</div>

@@ -549,7 +549,7 @@ export function registerDecisionDeskTools(): () => void {
               success: false,
               error: `Unknown criterion ID "${criterionId}".`,
               validCriterionIds: [
-                ...validCriterionIds,
+                ...Array.from(validCriterionIds),
               ],
             });
           }
